@@ -32,11 +32,22 @@ const Sidebar: React.FC<SidebarProps> = ({ activePage, onNavigate, userRole }) =
 
   return (
     <div className="w-64 bg-slate-900 text-slate-300 hidden md:flex flex-col">
-      <div className="p-6 flex items-center space-x-3">
-        <div className="w-10 h-10 bg-blue-600 rounded-lg flex items-center justify-center text-white font-bold text-xl">
-          E
+      <div className="p-6">
+        <div className="flex items-center space-x-2">
+            <div className="w-10 h-10 bg-white rounded-lg flex items-center justify-center overflow-hidden p-1 shadow-inner">
+                <img 
+                    src="https://img.icons8.com/color/96/vending-machine.png" 
+                    alt="Logo Icon" 
+                    className="w-full h-full object-contain"
+                />
+            </div>
+            <div className="flex flex-col">
+                <span className="text-xl font-black tracking-tighter leading-none">
+                    <span className="text-[#0071bc]">Easy</span><span className="text-[#7dc242]">Vend</span>
+                </span>
+                <span className="text-[10px] uppercase tracking-[0.2em] font-bold opacity-50 mt-1">Management</span>
+            </div>
         </div>
-        <span className="text-xl font-bold text-white tracking-tight">Easy Vend</span>
       </div>
       
       <nav className="flex-1 px-4 py-4 space-y-1">
@@ -48,9 +59,9 @@ const Sidebar: React.FC<SidebarProps> = ({ activePage, onNavigate, userRole }) =
             <button
               key={item.id}
               onClick={() => onNavigate(item.id)}
-              className={`w-full flex items-center space-x-3 px-4 py-3 rounded-xl transition-all ${
+              className={`w-full flex items-center space-x-3 px-4 py-3 rounded-xl transition-all duration-200 ${
                 isActive 
-                ? 'bg-blue-600 text-white shadow-lg shadow-blue-900/20' 
+                ? 'bg-gradient-to-r from-[#0071bc] to-[#7dc242] text-white shadow-lg shadow-blue-900/40' 
                 : 'hover:bg-slate-800 hover:text-white'
               }`}
             >

@@ -33,14 +33,21 @@ const Reports: React.FC<ReportsProps> = ({ user }) => {
 
   const exportCSV = () => {
     const headers = ['ID', 'Token Code', 'Meter #', 'Amount', 'Units', 'Service Charge', 'Date'];
+    
+    // Function to safely wrap CSV values
+    const escape = (val: any) => {
+        const str = String(val).replace(/"/g, '""');
+        return `"${str}"`;
+    };
+
     const rows = filteredData.map(t => [
-      t.id, 
-      t.tokenCode, 
-      t.meterNumber, 
-      t.amount, 
-      t.units, 
-      t.totalServiceCharge, 
-      new Date(t.createdAt).toLocaleDateString()
+      escape(t.id), 
+      escape(t.tokenCode), 
+      escape(t.meterNumber), 
+      escape(t.amount.toFixed(2)), 
+      escape(t.units.toFixed(2)), 
+      escape(t.totalServiceCharge.toFixed(2)), 
+      escape(new Date(t.createdAt).toLocaleDateString())
     ]);
     
     const csvContent = "data:text/csv;charset=utf-8," 
@@ -64,7 +71,7 @@ const Reports: React.FC<ReportsProps> = ({ user }) => {
         </div>
         <button 
           onClick={exportCSV}
-          className="bg-slate-900 text-white px-6 py-3 rounded-xl font-bold hover:bg-slate-800 transition-all flex items-center space-x-2"
+          className="bg-slate-900 text-white px-6 py-3 rounded-xl font-bold hover:bg-slate-800 transition-all flex items-center space-x-2 shadow-lg shadow-slate-900/10"
         >
           <svg className="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path strokeLinecap="round" strokeLinejoin="round" strokeWidth="2" d="M4 16v1a3 3 0 003 3h10a3 3 0 003-3v-1m-4-4l-4 4m0 0l-4-4m4 4V4" /></svg>
           <span>Export CSV</span>
@@ -79,7 +86,7 @@ const Reports: React.FC<ReportsProps> = ({ user }) => {
               type="date" 
               value={dateRange.start}
               onChange={(e) => setDateRange({...dateRange, start: e.target.value})}
-              className="w-full px-4 py-3 bg-slate-50 border border-slate-200 rounded-xl focus:ring-2 focus:ring-blue-500 outline-none" 
+              className="w-full px-4 py-3 bg-slate-50 border border-slate-200 rounded-xl focus:ring-2 focus:ring-[#0071bc] outline-none transition-all" 
             />
           </div>
           <div>
@@ -88,13 +95,13 @@ const Reports: React.FC<ReportsProps> = ({ user }) => {
               type="date" 
               value={dateRange.end}
               onChange={(e) => setDateRange({...dateRange, end: e.target.value})}
-              className="w-full px-4 py-3 bg-slate-50 border border-slate-200 rounded-xl focus:ring-2 focus:ring-blue-500 outline-none" 
+              className="w-full px-4 py-3 bg-slate-50 border border-slate-200 rounded-xl focus:ring-2 focus:ring-[#0071bc] outline-none transition-all" 
             />
           </div>
           <div className="flex items-end">
             <button 
               onClick={() => setDateRange({start: '', end: ''})}
-              className="text-blue-600 font-bold text-sm hover:underline mb-3"
+              className="text-[#0071bc] font-bold text-sm hover:underline mb-3 transition-colors"
             >
               Clear Filters
             </button>
@@ -103,7 +110,7 @@ const Reports: React.FC<ReportsProps> = ({ user }) => {
       </div>
 
       <div className="grid grid-cols-1 md:grid-cols-3 gap-8 mb-10">
-        <div className="bg-blue-600 p-8 rounded-3xl text-white shadow-xl shadow-blue-600/20">
+        <div className="bg-gradient-to-br from-[#0071bc] to-[#005a96] p-8 rounded-3xl text-white shadow-xl shadow-blue-600/20">
           <p className="text-sm font-bold opacity-75 uppercase tracking-widest">Gross Revenue</p>
           <h2 className="text-4xl font-black mt-2">${stats.totalAmount.toLocaleString()}</h2>
         </div>
@@ -139,9 +146,14 @@ const Reports: React.FC<ReportsProps> = ({ user }) => {
                     <td className="px-6 py-4 font-mono font-bold text-slate-900">{t.meterNumber}</td>
                     <td className="px-6 py-4 text-right font-bold text-slate-900">${t.amount.toFixed(2)}</td>
                     <td className="px-6 py-4 text-right text-red-500 font-medium">-${t.totalServiceCharge.toFixed(2)}</td>
-                    <td className="px-6 py-4 text-right font-bold text-green-600">{t.units.toFixed(2)}</td>
+                    <td className="px-6 py-4 text-right font-bold text-[#7dc242]">{t.units.toFixed(2)}</td>
                   </tr>
                 ))}
+                {filteredData.length === 0 && (
+                  <tr>
+                    <td colSpan={5} className="px-6 py-20 text-center text-slate-400 italic">No records found for the selected filter.</td>
+                  </tr>
+                )}
              </tbody>
            </table>
          </div>

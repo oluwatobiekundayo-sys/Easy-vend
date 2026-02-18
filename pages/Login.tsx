@@ -47,20 +47,22 @@ const Login: React.FC<LoginProps> = ({ onLogin }) => {
       <div className="w-full max-w-md">
         <div className="bg-white rounded-3xl shadow-2xl overflow-hidden">
           <div className="p-8 md:p-12">
-            <div className="flex items-center justify-center mb-8">
-              <div className="w-12 h-12 bg-blue-600 rounded-xl flex items-center justify-center text-white text-2xl font-bold shadow-lg shadow-blue-500/30">
-                E
+            <div className="flex flex-col items-center justify-center mb-10 text-center">
+              <div className="w-20 h-20 bg-white border border-slate-100 rounded-2xl flex items-center justify-center p-2 mb-4 shadow-sm">
+                <img 
+                    src="https://img.icons8.com/color/96/vending-machine.png" 
+                    alt="EasyVend Logo" 
+                    className="w-full h-full object-contain"
+                />
               </div>
-              <h1 className="ml-4 text-2xl font-bold text-slate-900">Easy Vend</h1>
-            </div>
-
-            <div className="text-center mb-10">
-              <h2 className="text-xl font-bold text-slate-800">Sign in to workspace</h2>
-              <p className="text-slate-500 mt-2">Facility Management Phase 1</p>
+              <h1 className="text-3xl font-black tracking-tighter">
+                <span className="text-[#0071bc]">Easy</span><span className="text-[#7dc242]">Vend</span>
+              </h1>
+              <p className="text-slate-500 mt-2 font-medium">Facility Management Workspace</p>
             </div>
 
             {error && (
-              <div className="mb-6 p-4 bg-red-50 border border-red-100 text-red-600 rounded-xl text-sm flex items-start space-x-3">
+              <div className="mb-6 p-4 bg-red-50 border border-red-100 text-red-600 rounded-xl text-sm flex items-start space-x-3 animate-in fade-in zoom-in-95">
                 <svg className="w-5 h-5 flex-shrink-0" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path strokeLinecap="round" strokeLinejoin="round" strokeWidth="2" d="M12 8v4m0 4h.01M21 12a9 9 0 11-18 0 9 9 0 0118 0z" /></svg>
                 <span>{error}</span>
               </div>
@@ -73,19 +75,22 @@ const Login: React.FC<LoginProps> = ({ onLogin }) => {
                   type="email" 
                   value={email}
                   onChange={(e) => setEmail(e.target.value)}
-                  className="w-full px-4 py-3 bg-slate-50 border border-slate-200 rounded-xl focus:outline-none focus:ring-2 focus:ring-blue-500 transition-all text-slate-900"
+                  className="w-full px-4 py-3 bg-slate-50 border border-slate-200 rounded-xl focus:outline-none focus:ring-2 focus:ring-[#0071bc] transition-all text-slate-900"
                   placeholder="name@company.com"
                   required
                 />
               </div>
 
               <div>
-                <label className="block text-sm font-semibold text-slate-700 mb-2">Password</label>
+                <div className="flex justify-between mb-2">
+                    <label className="text-sm font-semibold text-slate-700">Password</label>
+                    <a href="#" className="text-xs text-[#0071bc] font-bold hover:underline">Forgot?</a>
+                </div>
                 <input 
                   type="password" 
                   value={password}
                   onChange={(e) => setPassword(e.target.value)}
-                  className="w-full px-4 py-3 bg-slate-50 border border-slate-200 rounded-xl focus:outline-none focus:ring-2 focus:ring-blue-500 transition-all text-slate-900"
+                  className="w-full px-4 py-3 bg-slate-50 border border-slate-200 rounded-xl focus:outline-none focus:ring-2 focus:ring-[#0071bc] transition-all text-slate-900"
                   placeholder="••••••••"
                   required
                 />
@@ -93,7 +98,7 @@ const Login: React.FC<LoginProps> = ({ onLogin }) => {
 
               <button 
                 disabled={loading}
-                className={`w-full py-4 bg-blue-600 text-white rounded-xl font-bold shadow-lg shadow-blue-600/20 hover:bg-blue-700 transition-all flex items-center justify-center space-x-2 ${loading ? 'opacity-70 cursor-not-allowed' : ''}`}
+                className={`w-full py-4 bg-gradient-to-r from-[#0071bc] to-[#7dc242] text-white rounded-xl font-black text-lg shadow-xl shadow-blue-600/20 hover:opacity-95 transition-all flex items-center justify-center space-x-2 ${loading ? 'opacity-70 cursor-not-allowed' : ''}`}
               >
                 {loading ? (
                   <svg className="animate-spin h-5 w-5 text-white" xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24">
@@ -107,9 +112,9 @@ const Login: React.FC<LoginProps> = ({ onLogin }) => {
             </form>
           </div>
           
-          <div className="bg-slate-50 p-6 border-t border-slate-100 flex items-center justify-between text-xs font-medium text-slate-400 uppercase tracking-widest">
-            <span>Secured Login</span>
-            <span>v1.0.0-Beta</span>
+          <div className="bg-slate-50 p-6 border-t border-slate-100 flex items-center justify-between text-xs font-bold text-slate-400 uppercase tracking-widest">
+            <span>Powered by EasyVend</span>
+            <span>v1.2.0</span>
           </div>
         </div>
       </div>
