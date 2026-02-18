@@ -1,0 +1,5 @@
+{
+  "name": "Easy Vend",
+  "description": "A production-ready facility management dashboard for property owners to manage tenants and electricity meters with role-based access control.",
+  "requestFramePermissions": []
+}
