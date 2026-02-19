@@ -26,7 +26,7 @@ const Dashboard: React.FC<DashboardProps> = ({ user }) => {
     // Role based filtering
     if (user.role === UserRole.ADMIN) {
       return [
-        { label: 'Total Revenue', value: `$${totalRevenue.toLocaleString()}`, sub: 'System-wide earnings', type: 'revenue' },
+        { label: 'Total Revenue', value: `₦${totalRevenue.toLocaleString()}`, sub: 'System-wide earnings', type: 'revenue' },
         { label: 'Total Meters', value: totalMeters.toString(), sub: 'Registered devices', type: 'meters' },
         { label: 'Tokens Vended', value: totalTokens.toString(), sub: 'Lifetime count', type: 'tokens' },
         { label: 'Active Tenants', value: activeTenants.toString(), sub: 'Currently using power', type: 'tenants' }
@@ -34,17 +34,17 @@ const Dashboard: React.FC<DashboardProps> = ({ user }) => {
     } else if (user.role === UserRole.ACCOUNTANT) {
       const serviceCharges = tokens.reduce((acc, t) => acc + t.totalServiceCharge, 0);
       return [
-        { label: 'Total Revenue', value: `$${totalRevenue.toLocaleString()}`, sub: 'Gross amount', type: 'revenue' },
-        { label: 'Service Earnings', value: `$${serviceCharges.toLocaleString()}`, sub: 'Commission/Charges', type: 'charges' },
-        { label: 'Net Distribution', value: `$${(totalRevenue - serviceCharges).toLocaleString()}`, sub: 'Payable to property', type: 'net' },
-        { label: 'Monthly Avg', value: `$${(totalRevenue / 12 || 0).toFixed(0)}`, sub: 'Projected monthly', type: 'avg' }
+        { label: 'Total Revenue', value: `₦${totalRevenue.toLocaleString()}`, sub: 'Gross amount', type: 'revenue' },
+        { label: 'Service Earnings', value: `₦${serviceCharges.toLocaleString()}`, sub: 'Commission/Charges', type: 'charges' },
+        { label: 'Net Distribution', value: `₦${(totalRevenue - serviceCharges).toLocaleString()}`, sub: 'Payable to property', type: 'net' },
+        { label: 'Monthly Avg', value: `₦${(totalRevenue / 12 || 0).toFixed(0)}`, sub: 'Projected monthly', type: 'avg' }
       ];
     } else {
       // Officer
       const userTokens = tokens.filter(t => t.generatedBy === user.id);
       return [
         { label: 'Your Vends', value: userTokens.length.toString(), sub: 'Tokens vended by you', type: 'tokens' },
-        { label: 'Your Revenue', value: `$${userTokens.reduce((acc, t) => acc + t.amount, 0).toLocaleString()}`, sub: 'Collected by you', type: 'revenue' },
+        { label: 'Your Revenue', value: `₦${userTokens.reduce((acc, t) => acc + t.amount, 0).toLocaleString()}`, sub: 'Collected by you', type: 'revenue' },
         { label: 'Registered Meters', value: totalMeters.toString(), sub: 'Total in system', type: 'meters' },
         { label: 'Active Alerts', value: '0', sub: 'Meters needing review', type: 'alerts' }
       ];
@@ -88,7 +88,7 @@ const Dashboard: React.FC<DashboardProps> = ({ user }) => {
                   </div>
                 </div>
                 <div className="text-right">
-                  <p className="text-sm font-bold text-slate-900">${token.amount.toFixed(2)}</p>
+                  <p className="text-sm font-bold text-slate-900">₦{token.amount.toFixed(2)}</p>
                   <p className="text-[10px] font-mono text-slate-400 uppercase tracking-tighter">{token.tokenCode}</p>
                 </div>
               </div>

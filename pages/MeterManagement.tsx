@@ -9,10 +9,7 @@ interface MeterManagementProps {
 const MeterManagement: React.FC<MeterManagementProps> = ({ user }) => {
   const [meters, setMeters] = useState<Meter[]>(() => {
     const saved = localStorage.getItem('easy_vend_meters');
-    return saved ? JSON.parse(saved) : [
-      { id: crypto.randomUUID(), meterNumber: '12345678901', tenantName: 'Alice Johnson', property: 'Silver Heights', unit: 'Unit 4A', status: MeterStatus.ACTIVE, createdAt: new Date().toISOString() },
-      { id: crypto.randomUUID(), meterNumber: '98765432109', tenantName: 'Bob Smith', property: 'Oak Ridge', unit: 'Suite 200', status: MeterStatus.ACTIVE, createdAt: new Date().toISOString() }
-    ];
+    return saved ? JSON.parse(saved) : [];
   });
 
   const [search, setSearch] = useState('');

@@ -112,11 +112,11 @@ const Reports: React.FC<ReportsProps> = ({ user }) => {
       <div className="grid grid-cols-1 md:grid-cols-3 gap-8 mb-10">
         <div className="bg-gradient-to-br from-[#0071bc] to-[#005a96] p-8 rounded-3xl text-white shadow-xl shadow-blue-600/20">
           <p className="text-sm font-bold opacity-75 uppercase tracking-widest">Gross Revenue</p>
-          <h2 className="text-4xl font-black mt-2">${stats.totalAmount.toLocaleString()}</h2>
+          <h2 className="text-4xl font-black mt-2">₦{stats.totalAmount.toLocaleString()}</h2>
         </div>
         <div className="bg-slate-900 p-8 rounded-3xl text-white shadow-xl shadow-slate-900/20">
           <p className="text-sm font-bold opacity-75 uppercase tracking-widest">Service Earnings</p>
-          <h2 className="text-4xl font-black mt-2">${stats.totalCharges.toLocaleString()}</h2>
+          <h2 className="text-4xl font-black mt-2">₦{stats.totalCharges.toLocaleString()}</h2>
         </div>
         <div className="bg-white p-8 rounded-3xl border border-slate-200 shadow-sm">
           <p className="text-sm font-bold text-slate-400 uppercase tracking-widest">Total Energy</p>
@@ -144,8 +144,8 @@ const Reports: React.FC<ReportsProps> = ({ user }) => {
                   <tr key={t.id} className="hover:bg-slate-50 transition-colors">
                     <td className="px-6 py-4 text-sm text-slate-600">{new Date(t.createdAt).toLocaleDateString()}</td>
                     <td className="px-6 py-4 font-mono font-bold text-slate-900">{t.meterNumber}</td>
-                    <td className="px-6 py-4 text-right font-bold text-slate-900">${t.amount.toFixed(2)}</td>
-                    <td className="px-6 py-4 text-right text-red-500 font-medium">-${t.totalServiceCharge.toFixed(2)}</td>
+                    <td className="px-6 py-4 text-right font-bold text-slate-900">₦{t.amount.toFixed(2)}</td>
+                    <td className="px-6 py-4 text-right text-red-500 font-medium">-₦{t.totalServiceCharge.toFixed(2)}</td>
                     <td className="px-6 py-4 text-right font-bold text-[#7dc242]">{t.units.toFixed(2)}</td>
                   </tr>
                 ))}

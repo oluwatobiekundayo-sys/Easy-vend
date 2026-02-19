@@ -192,7 +192,7 @@ const TokenVending: React.FC<TokenVendingProps> = ({ user, showToast }) => {
                 <div>
                   <label className="block text-sm font-semibold text-slate-700 mb-2">Vending Amount (Total)</label>
                   <div className="relative">
-                    <span className="absolute left-4 top-1/2 -translate-y-1/2 text-slate-400 font-bold">$</span>
+                    <span className="absolute left-4 top-1/2 -translate-y-1/2 text-slate-400 font-bold">₦</span>
                     <input 
                       type="number"
                       required
@@ -241,11 +241,11 @@ const TokenVending: React.FC<TokenVendingProps> = ({ user, showToast }) => {
               <div className="p-6 bg-slate-50 rounded-2xl border border-slate-100 flex flex-wrap gap-8 justify-between">
                 <div>
                   <p className="text-xs text-slate-400 font-bold uppercase tracking-widest mb-1">Service Deducted</p>
-                  <p className="text-xl font-bold text-slate-900">${calculation.totalServiceCharge.toFixed(2)}</p>
+                  <p className="text-xl font-bold text-slate-900">₦{calculation.totalServiceCharge.toFixed(2)}</p>
                 </div>
                 <div>
                   <p className="text-xs text-slate-400 font-bold uppercase tracking-widest mb-1">Net Vending Amount</p>
-                  <p className="text-xl font-bold text-blue-600">${calculation.netAmount.toFixed(2)}</p>
+                  <p className="text-xl font-bold text-blue-600">₦{calculation.netAmount.toFixed(2)}</p>
                 </div>
                 <div>
                   <p className="text-xs text-slate-400 font-bold uppercase tracking-widest mb-1">Total Units</p>
@@ -344,11 +344,11 @@ const TokenVending: React.FC<TokenVendingProps> = ({ user, showToast }) => {
                  </div>
                  <div className="flex justify-between text-sm">
                     <span className="text-slate-500">Vending Amount:</span>
-                    <span className="font-bold">${formData.amount.toFixed(2)}</span>
+                    <span className="font-bold">₦{formData.amount.toFixed(2)}</span>
                  </div>
                  <div className="flex justify-between text-sm">
                     <span className="text-slate-500">Service Fee:</span>
-                    <span className="font-bold text-red-500">-${calculation.totalServiceCharge.toFixed(2)}</span>
+                    <span className="font-bold text-red-500">-₦{calculation.totalServiceCharge.toFixed(2)}</span>
                  </div>
                  <div className="pt-3 border-t border-slate-200 flex justify-between text-lg">
                     <span className="font-bold text-slate-900">Units:</span>
