@@ -2,6 +2,7 @@
 import React, { useState, useEffect } from 'react';
 import { User, UserRole, AuthState } from './types';
 import Login from './pages/Login';
+import SignUp from './pages/SignUp';
 import Dashboard from './pages/Dashboard';
 import MeterManagement from './pages/MeterManagement';
 import UserManagement from './pages/UserManagement';
@@ -18,6 +19,7 @@ const App: React.FC = () => {
     return saved ? JSON.parse(saved) : { user: null, token: null, isAuthenticated: false };
   });
 
+  const [authView, setAuthView] = useState<'login' | 'signup'>('login');
   const [currentPage, setCurrentPage] = useState<'dashboard' | 'meters' | 'users' | 'vending' | 'reports' | 'docs'>('dashboard');
   const [toast, setToast] = useState<{message: string, type: 'success' | 'error'} | null>(null);
 
@@ -30,9 +32,15 @@ const App: React.FC = () => {
     showToast('Login successful', 'success');
   };
 
+  const handleSignUp = (user: User, token: string) => {
+    setAuth({ user, token, isAuthenticated: true });
+    showToast('Account created successfully', 'success');
+  };
+
   const handleLogout = () => {
     setAuth({ user: null, token: null, isAuthenticated: false });
     setCurrentPage('dashboard');
+    setAuthView('login');
     showToast('Logged out', 'success');
   };
 
@@ -42,7 +50,9 @@ const App: React.FC = () => {
   };
 
   if (!auth.isAuthenticated) {
-    return <Login onLogin={handleLogin} />;
+    return authView === 'login' 
+      ? <Login onLogin={handleLogin} onSwitchToSignUp={() => setAuthView('signup')} />
+      : <SignUp onSignUp={handleSignUp} onSwitchToLogin={() => setAuthView('login')} />;
   }
 
   const renderPage = () => {
@@ -68,7 +78,7 @@ const App: React.FC = () => {
       <div className="flex-1 flex flex-col min-w-0">
         <Header user={auth.user!} onLogout={handleLogout} />
         <main className="flex-1 overflow-y-auto p-4 md:p-8">
-          <div className="max-w-7xl mx-auto relative">
+          <div className="max-w-7xl auto relative">
             {renderPage()}
           </div>
         </main>

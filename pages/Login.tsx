@@ -4,9 +4,10 @@ import { User, UserRole } from '../types';
 
 interface LoginProps {
   onLogin: (user: User, token: string) => void;
+  onSwitchToSignUp: () => void;
 }
 
-const Login: React.FC<LoginProps> = ({ onLogin }) => {
+const Login: React.FC<LoginProps> = ({ onLogin, onSwitchToSignUp }) => {
   const [email, setEmail] = useState('');
   const [password, setPassword] = useState('');
   const [error, setError] = useState('');
@@ -110,6 +111,18 @@ const Login: React.FC<LoginProps> = ({ onLogin }) => {
                 )}
               </button>
             </form>
+
+            <div className="mt-8 text-center">
+                <p className="text-sm text-slate-500">
+                    Don't have an account?{' '}
+                    <button 
+                        onClick={onSwitchToSignUp}
+                        className="text-[#0071bc] font-bold hover:underline"
+                    >
+                        Create Account
+                    </button>
+                </p>
+            </div>
           </div>
           
           <div className="bg-slate-50 p-6 border-t border-slate-100 flex items-center justify-between text-xs font-bold text-slate-400 uppercase tracking-widest">
