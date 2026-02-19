@@ -1,1 +1,21 @@
-{\n  "name": "easy-vend",\n  "private": true,\n  "version": "0.0.0",\n  "type": "module",\n  "scripts": {\n    "dev": "vite",\n    "build": "vite build",\n    "preview": "vite preview"\n  },\n  "dependencies": {\n    "react": "18.2.0",\n    "react-dom": "18.2.0"\n  },\n  "devDependencies": {\n    "@types/node": "^22.14.0",\n    "@vitejs/plugin-react": "^5.0.0",\n    "typescript": "~5.8.2",\n    "vite": "^6.2.0"\n  }\n}
+{
+  "name": "easy-vend",
+  "private": true,
+  "version": "0.0.0",
+  "type": "module",
+  "scripts": {
+    "dev": "vite",
+    "build": "vite build",
+    "preview": "vite preview"
+  },
+  "dependencies": {
+    "react": "18.2.0",
+    "react-dom": "18.2.0"
+  },
+  "devDependencies": {
+    "@types/node": "^22.14.0",
+    "@vitejs/plugin-react": "^5.0.0",
+    "typescript": "~5.8.2",
+    "vite": "^6.2.0"
+  }
+}
